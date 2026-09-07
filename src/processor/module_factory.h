@@ -51,19 +51,21 @@ class ModuleFactory {
 class BasicModuleFactory : public ModuleFactory {
  public:
   virtual ~BasicModuleFactory() { }
+  // Defined out of line, in basic_source_line_resolver.cc, so that
+  // BasicSourceLineResolver::Module's vtable is only needed by the
+  // translation unit that defines it.
   virtual BasicSourceLineResolver::Module* CreateModule(
-      const string& name) const {
-    return new BasicSourceLineResolver::Module(name);
-  }
+      const string& name) const;
 };
 
 class FastModuleFactory : public ModuleFactory {
  public:
   virtual ~FastModuleFactory() { }
+  // Defined out of line, in fast_source_line_resolver.cc, so that
+  // FastSourceLineResolver::Module's vtable is only needed by the
+  // translation unit that defines it.
   virtual FastSourceLineResolver::Module* CreateModule(
-      const string& name) const {
-    return new FastSourceLineResolver::Module(name);
-  }
+      const string& name) const;
 };
 
 }  // namespace google_breakpad

@@ -111,6 +111,11 @@ static const int kMaxErrorsBeforeBailing = 100;
 BasicSourceLineResolver::BasicSourceLineResolver() :
     SourceLineResolverBase(new BasicModuleFactory) { }
 
+BasicSourceLineResolver::Module* BasicModuleFactory::CreateModule(
+    const string& name) const {
+  return new BasicSourceLineResolver::Module(name);
+}
+
 // static
 void BasicSourceLineResolver::Module::LogParseError(
    const string& message,

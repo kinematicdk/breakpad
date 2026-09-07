@@ -62,6 +62,11 @@ namespace google_breakpad {
 FastSourceLineResolver::FastSourceLineResolver()
   : SourceLineResolverBase(new FastModuleFactory) { }
 
+FastSourceLineResolver::Module* FastModuleFactory::CreateModule(
+    const string& name) const {
+  return new FastSourceLineResolver::Module(name);
+}
+
 bool FastSourceLineResolver::ShouldDeleteMemoryBufferAfterLoadModule() {
   return false;
 }
